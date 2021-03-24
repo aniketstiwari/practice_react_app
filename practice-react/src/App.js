@@ -84,6 +84,22 @@ class App extends Component {
     })
   }
 
+  nameChangeHandler = (event) => {
+    //console.log("clicked")
+    //we shouldn't directly mutate directly the state like below
+    // this.state.persons[0].name = "Maximilia";
+    
+    //setstate will merge old state with the new state. ALso, it will not discard
+    // other state
+    this.setState({
+      persons: [
+        { name: 'Max', age: 28 },
+        { name: event.target.value, age: 29 },
+        { name: 'stephanie', age: 27 },
+      ]
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -100,7 +116,8 @@ class App extends Component {
         <Person 
           name={this.state.persons[1].name} 
           age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind(this, 'max')}>
+          click={this.switchNameHandler.bind(this, 'max')}
+          changed={this.nameChangeHandler}>
             My Hobbies: Racing
         </Person>
         <Person 

@@ -10,11 +10,24 @@ class App extends Component {
       { name: 'Max', age: 28 },
       { name: 'Manu', age: 29 },
       { name: 'stephanie', age: 30 },
-    ]
+    ],
+    otherstate: "some othet value"
   }
 
   switchNameHandler = () => {
-    console.log("clicked")
+    //console.log("clicked")
+    //we shouldn't directly mutate directly the state like below
+    // this.state.persons[0].name = "Maximilia";
+    
+    //setstate will merge old state with the new state. ALso, it will not discard
+    // other state
+    this.setState({
+      persons: [
+        { name: 'Maximilian', age: 28 },
+        { name: 'Manu', age: 29 },
+        { name: 'stephanie', age: 27 },
+      ]
+    })
   }
 
   render() {

@@ -109,7 +109,10 @@ class App extends Component {
   }
 
   deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons;
+    //splice approach is not good as it mutates the original array
+    //const persons = this.state.persons;
+    //Instead we can use spread operator
+    const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
     this.setState({persons: persons})
   }

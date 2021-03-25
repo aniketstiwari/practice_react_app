@@ -2,7 +2,7 @@ import React , { Component } from 'react';
 //import React , { useState } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Radium, { StyleRoot } from 'radium'; //inorder to use media query with style
+// import Radium, { StyleRoot } from 'radium'; //inorder to use media query with style
 //need to add styleroot
 
 //props are set and pass from outside. State is manage from inside the component
@@ -192,7 +192,7 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
+      // <StyleRoot>
         <div className="App">
           <h1>HI I am React App</h1>
           <p className={classes.join(' ')}>This is really working</p>
@@ -206,9 +206,11 @@ class App extends Component {
           */}
           {persons}
         </div>
-      </StyleRoot>
+      // </StyleRoot>
     )
   }
 }
 
-export default Radium(App);
+//export default Radium(App);
+
+export default App;

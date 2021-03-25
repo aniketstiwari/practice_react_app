@@ -61,9 +61,9 @@ import Person from './Person/Person';
 class App extends Component {
   state = {
     persons: [
-      { name: 'Max', age: 28 },
-      { name: 'Manu', age: 29 },
-      { name: 'stephanie', age: 30 },
+      { id: "a1", name: 'Max', age: 28 },
+      { id: "a2", name: 'Manu', age: 29 },
+      { id: "a3", name: 'stephanie', age: 30 },
     ],
     otherstate: "some othet value",
     showPersons: false
@@ -85,20 +85,32 @@ class App extends Component {
     })
   }
 
-  nameChangeHandler = (event) => {
+  nameChangeHandler = (event, id) => {
     //console.log("clicked")
     //we shouldn't directly mutate directly the state like below
     // this.state.persons[0].name = "Maximilia";
     
     //setstate will merge old state with the new state. ALso, it will not discard
     // other state
-    this.setState({
-      persons: [
-        { id: "a1", name: 'Max', age: 28 },
-        { id: "a2", name: event.target.value, age: 29 },
-        { id: "a3", name: 'stephanie', age: 27 },
-      ]
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id == id
     })
+    const person = {...this.state.persons[personIndex]}
+    //alternate approach instead of spread operator
+    //const person = Object.assign({}, this.state.persons[personIndex])
+
+    person.name = event.target.value;
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+    this.setState({persons: persons})
+
+    // this.setState({
+    //   persons: [
+    //     { id: "a1", name: 'Max', age: 28 },
+    //     { id: "a2", name: event.target.value, age: 29 },
+    //     { id: "a3", name: 'stephanie', age: 27 },
+    //   ]
+    // })
   }
 
   togglePersonHandler = () => {
@@ -127,6 +139,7 @@ class App extends Component {
     };
 
     let persons = null;
+
     if(this.state.showPersons) {
       persons = (
         <div>
@@ -136,6 +149,7 @@ class App extends Component {
               name={person.name}
               age={person.age}
               click={this.deletePersonHandler.bind(this, index)}
+              changed={(event) => this.nameChangeHandler(event, person.id)}
             />
           })}
           {/* <Person 

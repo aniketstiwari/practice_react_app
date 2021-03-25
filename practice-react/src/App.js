@@ -2,7 +2,8 @@ import React , { Component } from 'react';
 //import React , { useState } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium'; //inorder to use media query with style
+//need to add styleroot
 
 //props are set and pass from outside. State is manage from inside the component
 
@@ -191,19 +192,21 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        <h1>HI I am React App</h1>
-        <p className={classes.join(' ')}>This is really working</p>
-        <button 
-          style={style}
-          onClick={this.togglePersonHandler}>
-            Toggle Persons
-        </button>
-        {/*one other way of passing arguments
-        onClick={() => this.switchNameHandler('maximilian!!')}
-        */}
-        {persons}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>HI I am React App</h1>
+          <p className={classes.join(' ')}>This is really working</p>
+          <button 
+            style={style}
+            onClick={this.togglePersonHandler}>
+              Toggle Persons
+          </button>
+          {/*one other way of passing arguments
+          onClick={() => this.switchNameHandler('maximilian!!')}
+          */}
+          {persons}
+        </div>
+      </StyleRoot>
     )
   }
 }

@@ -94,9 +94,9 @@ class App extends Component {
     // other state
     this.setState({
       persons: [
-        { name: 'Max', age: 28 },
-        { name: event.target.value, age: 29 },
-        { name: 'stephanie', age: 27 },
+        { id: "a1", name: 'Max', age: 28 },
+        { id: "a2", name: event.target.value, age: 29 },
+        { id: "a3", name: 'stephanie', age: 27 },
       ]
     })
   }
@@ -132,6 +132,7 @@ class App extends Component {
         <div>
           {this.state.persons.map((person, index) => {
             return <Person
+              key={person.id}
               name={person.name}
               age={person.age}
               click={this.deletePersonHandler.bind(this, index)}

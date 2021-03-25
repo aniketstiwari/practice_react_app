@@ -108,6 +108,12 @@ class App extends Component {
     })
   }
 
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons})
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -125,6 +131,7 @@ class App extends Component {
             return <Person
               name={person.name}
               age={person.age}
+              click={this.deletePersonHandler.bind(this, index)}
             />
           })}
           {/* <Person 

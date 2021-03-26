@@ -4,6 +4,20 @@ import './App.css';
 import Person from './Person/Person';
 // import Radium, { StyleRoot } from 'radium'; //inorder to use media query with style
 //need to add styleroot
+import styled from 'styled-components';
+
+const StyledButton = styled.button`
+  background-color: green;
+  color: white;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+  &:hover {
+    background-color: lightgreen;
+    color: black;
+  }
+`;
 
 //props are set and pass from outside. State is manage from inside the component
 
@@ -196,11 +210,10 @@ class App extends Component {
         <div className="App">
           <h1>HI I am React App</h1>
           <p className={classes.join(' ')}>This is really working</p>
-          <button 
-            style={style}
+          <StyledButton
             onClick={this.togglePersonHandler}>
               Toggle Persons
-          </button>
+          </StyledButton>
           {/*one other way of passing arguments
           onClick={() => this.switchNameHandler('maximilian!!')}
           */}

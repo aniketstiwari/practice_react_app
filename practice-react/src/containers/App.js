@@ -1,12 +1,14 @@
 import React , { Component } from 'react';
 //import React , { useState } from 'react';
 //import './App.css';
-import classes from './App.module.css'
-import Person from './Person/Person';
+import classes from './App.module.css';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
+
 // import Radium, { StyleRoot } from 'radium'; //inorder to use media query with style
 //need to add styleroot
 //import styled from 'styled-components';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+//import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 // const StyledButton = styled.button`
 //   background-color: ${props => props.alt ? 'red' : 'green'};
@@ -163,21 +165,23 @@ class App extends Component {
 
     let persons = null;
     //let btnClass = [classes.Button];
-    let btnClass = '';
 
     if(this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
-            return <ErrorBoundary key={person.id}>
-                <Person
+          <Persons 
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangeHandler}  
+          />
+          {/* {this.state.persons.map((person, index) => {
+            return <Person key={person.id}
                   name={person.name}
                   age={person.age}
                   click={this.deletePersonHandler.bind(this, index)}
                   changed={(event) => this.nameChangeHandler(event, person.id)}
                 />
-              </ErrorBoundary>
-          })}
+          })} */}
           {/* <Person 
             name={this.state.persons[0].name} 
             age={this.state.persons[0].age}
@@ -201,30 +205,26 @@ class App extends Component {
       //   color: 'black'
       // }
       //btnClass.push(classes.Red)
-      btnClass = classes.Red;
-    }
-
-    let assignedClasses = [];
-    if(this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red);
-    }
-    if(this.state.persons.length <= 1) {
-      assignedClasses.push(classes.bold);
     }
 
     return (
       // <StyleRoot>
         <div className={classes.App}>
-          <h1>HI I am React App</h1>
-          <p className={assignedClasses.join(' ')}>This is really working</p>
+          <Cockpit 
+            persons={this.state.persons}
+            showPersons={this.state.showPersons}
+            clicked={this.togglePersonHandler}
+          />
+          {/* <h1>HI I am React App</h1>
+          <p className={assignedClasses.join(' ')}>This is really working</p> */}
           {/* <StyledButton
             alt={this.state.showPersons}
             onClick={this.togglePersonHandler}>
               Toggle Persons
           </StyledButton> */}
-          <button className={btnClass} onClick={this.togglePersonHandler}>
+          {/* <button className={btnClass} onClick={this.togglePersonHandler}>
             Toggle Persons
-          </button>
+          </button> */}
           {/*one other way of passing arguments
           onClick={() => this.switchNameHandler('maximilian!!')}
           */}

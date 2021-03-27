@@ -22,10 +22,10 @@ const person = (props) => {
   //     width: '450px'
   //   }
   // }
-  const rnd = Math.random();
-  if (rnd > 0.7) {
-    throw new Error("Something went Wrong");
-  }
+  // const rnd = Math.random();
+  // if (rnd > 0.7) {
+  //   throw new Error("Something went Wrong");
+  // }
 
   return (
     // <div className="Person" style={style}>

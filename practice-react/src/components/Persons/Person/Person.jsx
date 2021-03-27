@@ -26,7 +26,7 @@ const person = (props) => {
   // if (rnd > 0.7) {
   //   throw new Error("Something went Wrong");
   // }
-
+  console.log('Person.js rendering');
   return (
     // <div className="Person" style={style}>
     // <StyleDiv>

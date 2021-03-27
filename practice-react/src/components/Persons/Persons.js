@@ -9,8 +9,9 @@ import Person from './Person/Person';
 
 //Also If  you return jsx then you can omit the brackers () too
 
-const persons = (props) => 
-  props.persons.map((person, index) => {
+const persons = (props) => {
+  console.log('Persons.js rendering');
+  return props.persons.map((person, index) => {
     return <Person key={person.id}
           name={person.name}
           age={person.age}
@@ -18,5 +19,6 @@ const persons = (props) =>
           changed={(event) => props.changed(event, person.id)}
         />
   });
+};
 
 export default persons;

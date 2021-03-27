@@ -161,7 +161,8 @@ class App extends Component {
     // };
 
     let persons = null;
-    let btnClass = [classes.Button];
+    //let btnClass = [classes.Button];
+    let btnClass = '';
 
     if(this.state.showPersons) {
       persons = (
@@ -197,7 +198,8 @@ class App extends Component {
       //   backgroundColor: 'salmon',
       //   color: 'black'
       // }
-      btnClass.push(classes.Red)
+      //btnClass.push(classes.Red)
+      btnClass = classes.Red;
     }
 
     let assignedClasses = [];
@@ -218,7 +220,7 @@ class App extends Component {
             onClick={this.togglePersonHandler}>
               Toggle Persons
           </StyledButton> */}
-          <button className={btnClass.join(' ')} onClick={this.togglePersonHandler}>
+          <button className={btnClass} onClick={this.togglePersonHandler}>
             Toggle Persons
           </button>
           {/*one other way of passing arguments

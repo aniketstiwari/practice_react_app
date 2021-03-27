@@ -214,6 +214,7 @@ class App extends Component {
             persons={this.state.persons}
             showPersons={this.state.showPersons}
             clicked={this.togglePersonHandler}
+            title={this.props.appTitle}
           />
           {/* <h1>HI I am React App</h1>
           <p className={assignedClasses.join(' ')}>This is really working</p> */}

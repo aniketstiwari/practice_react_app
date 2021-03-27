@@ -1,23 +1,24 @@
 import React , { Component } from 'react';
 //import React , { useState } from 'react';
-import './App.css';
+//import './App.css';
+import classes from './App.module.css'
 import Person from './Person/Person';
 // import Radium, { StyleRoot } from 'radium'; //inorder to use media query with style
 //need to add styleroot
-import styled from 'styled-components';
+//import styled from 'styled-components';
 
-const StyledButton = styled.button`
-  background-color: ${props => props.alt ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-  &:hover {
-    background-color: ${props => props.alt ? 'salmo' : 'lightgreen'};
-    color: black;
-  }
-`;
+// const StyledButton = styled.button`
+//   background-color: ${props => props.alt ? 'red' : 'green'};
+//   color: white;
+//   font: inherit;
+//   border: 1px solid blue;
+//   padding: 8px;
+//   cursor: pointer;
+//   &:hover {
+//     background-color: ${props => props.alt ? 'salmo' : 'lightgreen'};
+//     color: black;
+//   }
+// `;
 
 //props are set and pass from outside. State is manage from inside the component
 
@@ -146,20 +147,21 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: "inherit",
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
+    // const style = {
+    //   backgroundColor: 'green',
+    //   color: 'white',
+    //   font: "inherit",
+    //   border: '1px solid blue',
+    //   padding: '8px',
+    //   cursor: 'pointer',
+    //   ':hover': {
+    //     backgroundColor: 'lightgreen',
+    //     color: 'black'
+    //   }
+    // };
 
     let persons = null;
+    let btnClass = [classes.Button];
 
     if(this.state.showPersons) {
       persons = (
@@ -190,31 +192,35 @@ class App extends Component {
           /> */}
         </div>
       );
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
+      // style.backgroundColor = 'red';
+      // style[':hover'] = {
+      //   backgroundColor: 'salmon',
+      //   color: 'black'
+      // }
+      btnClass.push(classes.Red)
     }
 
-    let classes = [];
+    let assignedClasses = [];
     if(this.state.persons.length <= 2) {
-      classes.push('red');
+      assignedClasses.push(classes.red);
     }
     if(this.state.persons.length <= 1) {
-      classes.push('bold');
+      assignedClasses.push(classes.bold);
     }
 
     return (
       // <StyleRoot>
-        <div className="App">
+        <div className={classes.App}>
           <h1>HI I am React App</h1>
-          <p className={classes.join(' ')}>This is really working</p>
-          <StyledButton
+          <p className={assignedClasses.join(' ')}>This is really working</p>
+          {/* <StyledButton
             alt={this.state.showPersons}
             onClick={this.togglePersonHandler}>
               Toggle Persons
-          </StyledButton>
+          </StyledButton> */}
+          <button className={btnClass.join(' ')} onClick={this.togglePersonHandler}>
+            Toggle Persons
+          </button>
           {/*one other way of passing arguments
           onClick={() => this.switchNameHandler('maximilian!!')}
           */}

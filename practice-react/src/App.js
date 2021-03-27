@@ -6,6 +6,7 @@ import Person from './Person/Person';
 // import Radium, { StyleRoot } from 'radium'; //inorder to use media query with style
 //need to add styleroot
 //import styled from 'styled-components';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 // const StyledButton = styled.button`
 //   background-color: ${props => props.alt ? 'red' : 'green'};
@@ -168,13 +169,14 @@ class App extends Component {
       persons = (
         <div>
           {this.state.persons.map((person, index) => {
-            return <Person
-              key={person.id}
-              name={person.name}
-              age={person.age}
-              click={this.deletePersonHandler.bind(this, index)}
-              changed={(event) => this.nameChangeHandler(event, person.id)}
-            />
+            return <ErrorBoundary key={person.id}>
+                <Person
+                  name={person.name}
+                  age={person.age}
+                  click={this.deletePersonHandler.bind(this, index)}
+                  changed={(event) => this.nameChangeHandler(event, person.id)}
+                />
+              </ErrorBoundary>
           })}
           {/* <Person 
             name={this.state.persons[0].name} 

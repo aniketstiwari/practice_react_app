@@ -94,7 +94,8 @@ class App extends Component {
     ],
     otherstate: "some othet value",
     showPersons: false,
-    showCockpit: true
+    showCockpit: true,
+    changeCounter: 0
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -152,7 +153,19 @@ class App extends Component {
     person.name = event.target.value;
     const persons = [...this.state.persons];
     persons[personIndex] = person;
-    this.setState({persons: persons})
+
+    //setState will not immediately trigger an update of the state of this
+    //component in a re-render cycle. Instead it's basically scheduled by React
+    // and React will then perform the state update and the re-render cycle
+    // when it has the available resources to do that.
+    //setState is called synchronously here but it's not guaranteed to execute
+    // and finish immediately
+    this.setState( (prevState, props) => {
+      return { 
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1
+      }
+    })
 
     // this.setState({
     //   persons: [

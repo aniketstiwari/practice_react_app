@@ -28,22 +28,22 @@ const Cockpit = (props) => {
       }
     }, []);
 
-    // useEffect(() => {
-    //   console.log('[Cockpit.js] 2nd useEffect');
-    //   return () => {
-    //     console.log('[Cockpit.js] cleanup work in 2nd useEffect')
-    //   }
-    // });
+    useEffect(() => {
+      console.log('[Cockpit.js] 2nd useEffect');
+      return () => {
+        console.log('[Cockpit.js] cleanup work in 2nd useEffect')
+      }
+    });
 
     let assignedClasses = [];
     let btnClass = '';
     if(props.showPersons){
       btnClass = classes.Red;
     }
-    if(props.persons.length <= 2) {
+    if(props.personsLength <= 2) {
       assignedClasses.push(classes.red);
     }
-    if(props.persons.length <= 1) {
+    if(props.personsLength <= 1) {
       assignedClasses.push(classes.bold);
     }
 
@@ -57,5 +57,9 @@ const Cockpit = (props) => {
         </div>
     );
 };
+//React will basically memoize the component. It basically store a snapshot of this
+//component and only if its input changes, it will re-render it and otherwise if its
+//input do not change and some parent component wants to update this cockput component
+//React will give back that stored component
 
-export default Cockpit;
+export default React.memo(Cockpit);

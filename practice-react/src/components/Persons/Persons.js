@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Person from './Person/Person';
 
 //If you want to omit the return statement then start the open bracket
@@ -21,22 +21,25 @@ import Person from './Person/Person';
 //   });
 // };
 
-class Persons extends Component {
+class Persons extends PureComponent {
   // static getDerivedStateFromProps(props, state) {
   //   console.log('[Persons.js] getDerivedStateFromProps')
   // }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('[Persons.js] shouldComponentUpdate');
-    //here we are comparing if there is no change in the persons then we shouldn't run
-    //persons hooks
-    if(nextProps.persons !== this.props.persons){
-      return true;
-    }else {
-      return false;
-    }
-    
-  }
+  //If you want to check for a lot of props whether it is changed then make use
+  // of PureComponent
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log('[Persons.js] shouldComponentUpdate');
+  //   //here we are comparing if there is no change in the persons then we shouldn't run
+  //   //persons hooks
+  //   if(nextProps.persons !== this.props.persons ||
+  //     nextProps.clicked !== this.props.clicked || 
+  //     nextProps.changed !== this.props.changed){
+  //     return true;
+  //   }else {
+  //     return false;
+  //   }
+  // }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('[Persons.js] getSnapshotBeforeUpdate');

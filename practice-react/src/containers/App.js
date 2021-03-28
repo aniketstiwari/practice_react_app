@@ -5,6 +5,7 @@ import classes from './App.module.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import WithClass from '../hoc/WithClass';
+import Aux from '../hoc/Aux';
 
 // import Radium, { StyleRoot } from 'radium'; //inorder to use media query with style
 //need to add styleroot
@@ -239,7 +240,8 @@ class App extends Component {
 
     return (
       // <StyleRoot>
-        <WithClass classes={classes.App}>
+      <Aux>
+       {/* <WithClass classes={classes.App}> */}
           <button onClick={() => {
             this.setState({ showCockpit: false })
           }}>Remove Cockpit</button>
@@ -263,7 +265,8 @@ class App extends Component {
           onClick={() => this.switchNameHandler('maximilian!!')}
           */}
           {persons}
-        </WithClass>
+        </Aux>
+        // </WithClass>
       // </StyleRoot>
     )
   }
@@ -271,4 +274,4 @@ class App extends Component {
 
 //export default Radium(App);
 
-export default App;
+export default WithClass(App, classes.App);

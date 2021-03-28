@@ -17,21 +17,23 @@ const Cockpit = (props) => {
     //Similar to componentDidMount
     useEffect(() => {
       console.log('[Cockpit.js] useEffect');
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         alert('save data to cloud');
       }, 1000);
       //it runs before the main useEffect function runs but afrer the first render cycle
+      // or when it is unmounted
       return () => {
+        clearTimeout(timer);
         console.log("Cockpit.js cleanup work in useEffect")
       }
     }, []);
 
-    useEffect(() => {
-      console.log('[Cockpit.js] 2nd useEffect');
-      return () => {
-        console.log('[Cockpit.js] cleanup work in 2nd useEffect')
-      }
-    });
+    // useEffect(() => {
+    //   console.log('[Cockpit.js] 2nd useEffect');
+    //   return () => {
+    //     console.log('[Cockpit.js] cleanup work in 2nd useEffect')
+    //   }
+    // });
 
     let assignedClasses = [];
     let btnClass = '';

@@ -41,6 +41,15 @@ class Persons extends Component {
     console.log(snapshot);
   }
 
+  //Let say when you want to do some cleanup work or cleanup some
+  // event listener for example in this case 
+  // when person component will get remove from the DOM
+  //Basically you will have any code that needs to run right before the 
+  //the component is removed
+  componentWillUnmount() {
+    console.log("Persons.js componentWillUnmount");
+  }
+
   render() {
     console.log('Persons.js rendering');
     return this.props.persons.map((person, index) => {

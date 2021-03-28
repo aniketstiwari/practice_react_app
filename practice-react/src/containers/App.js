@@ -91,7 +91,8 @@ class App extends Component {
       { id: "a3", name: 'stephanie', age: 30 },
     ],
     otherstate: "some othet value",
-    showPersons: false
+    showPersons: false,
+    showCockpit: true
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -238,12 +239,15 @@ class App extends Component {
     return (
       // <StyleRoot>
         <div className={classes.App}>
-          <Cockpit 
+          <button onClick={() => {
+            this.setState({ showCockpit: false })
+          }}>Remove Cockpit</button>
+          { this.state.showCockpit ? <Cockpit 
             persons={this.state.persons}
             showPersons={this.state.showPersons}
             clicked={this.togglePersonHandler}
             title={this.props.appTitle}
-          />
+          /> : null}
           {/* <h1>HI I am React App</h1>
           <p className={assignedClasses.join(' ')}>This is really working</p> */}
           {/* <StyledButton

@@ -28,7 +28,14 @@ class Persons extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[Persons.js] shouldComponentUpdate');
-    return true;
+    //here we are comparing if there is no change in the persons then we shouldn't run
+    //persons hooks
+    if(nextProps.persons !== this.props.persons){
+      return true;
+    }else {
+      return false;
+    }
+    
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {

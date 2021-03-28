@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import classes from './Person.module.css';
+import Aux from '../../../hoc/Aux';
+
 // import Radium from 'radium';
 //import styled from 'styled-components';
 
@@ -45,12 +47,28 @@ import classes from './Person.module.css';
 class Person extends Component {
   render() {
     console.log('Person.js rendering');
+    // return (
+    //   <div className={classes.Person}>
+    //     <p onClick={this.props.click}> Hi I am {this.props.name} and I am {this.props.age} years old</p>
+    //     <p>{this.props.children}</p>
+    //     <input type="text" onChange={this.props.changed} value={this.props.name} />
+    //   </div>
+    // )
+
+    //You can also return a array but make sure you add a key to every element
+    // return [
+    //   <p key="a1" onClick={this.props.click}> Hi I am {this.props.name} and I am {this.props.age} years old</p>,
+    //   <p key="a2">{this.props.children}</p>,
+    //   <input key="a3" type="text" onChange={this.props.changed} value={this.props.name} />
+    // ]
+
+    //Adding a component
     return (  
-      <div className={classes.Person}>
+      <Aux>
         <p onClick={this.props.click}> Hi I am {this.props.name} and I am {this.props.age} years old</p>
         <p>{this.props.children}</p>
         <input type="text" onChange={this.props.changed} value={this.props.name} />
-      </div>
+      </Aux>
     )
   }
 }

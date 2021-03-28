@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Cockpit.module.css'
 
 const cockpit = (props) => {
+    useEffect(() => {
+      console.log('[Cockpit.js] useEffect');
+      //can add http request 
+      //It does the work of componentDidMount & componentDidUpdate
+    })
+
     let assignedClasses = [];
     let btnClass = '';
     if(props.showPersons){

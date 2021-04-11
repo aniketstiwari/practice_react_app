@@ -3,6 +3,7 @@ import classes from './Person.module.css';
 import Aux from '../../../hoc/Aux';
 import WithClass  from '../../../hoc/WithClass';
 import PropTypes from 'prop-types';
+import AuthContext from '../../../context/auth-context';
 
 // import Radium from 'radium';
 //import styled from 'styled-components';
@@ -81,7 +82,13 @@ class Person extends Component {
     //Adding a component
     return (  
       <Aux>
-        {this.props.isAuth ? <p>Authenticated!</p> : <p>Please login</p>}
+        <AuthContext.Consumer>
+          {/** It will take function as a child. The function will be executed
+           * for us by the authcontext.consumer or by the react context API, this 
+           * function will get our context object
+          */}
+          {(context) => context.authenticated ? <p>Authenticated!</p> : <p>Please login</p> }
+        </AuthContext.Consumer>
         <p onClick={this.props.click}> Hi I am {this.props.name} and I am {this.props.age} years old</p>
         <p>{this.props.children}</p>
         {/* To select an element we use refs in react The argument is the reference of the element you will placed it on Below we are setting up the focus in a variable */}

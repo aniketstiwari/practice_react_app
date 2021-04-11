@@ -6,6 +6,7 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import WithClass from '../hoc/WithClass';
 import Aux from '../hoc/Aux';
+import AuthContext from '../context/auth-context';
 
 // import Radium, { StyleRoot } from 'radium'; //inorder to use media query with style
 //need to add styleroot
@@ -222,7 +223,7 @@ class App extends Component {
             persons={this.state.persons}
             clicked={this.deletePersonHandler}
             changed={this.nameChangeHandler}
-            isAuthenticated={this.state.authenticated}
+            // isAuthenticated={this.state.authenticated}
           />
           {/* {this.state.persons.map((person, index) => {
             return <Person key={person.id}
@@ -264,27 +265,35 @@ class App extends Component {
           <button onClick={() => {
             this.setState({ showCockpit: false })
           }}>Remove Cockpit</button>
-          { this.state.showCockpit ? <Cockpit 
-            personsLength={this.state.persons.length}
-            showPersons={this.state.showPersons}
-            clicked={this.togglePersonHandler}
-            title={this.props.appTitle}
-            login={this.loginHandler}
-          /> : null}
-          {/* <h1>HI I am React App</h1>
-          <p className={assignedClasses.join(' ')}>This is really working</p> */}
-          {/* <StyledButton
-            alt={this.state.showPersons}
-            onClick={this.togglePersonHandler}>
+          <AuthContext.Provider 
+          //outer curly braces  are there to enter dynamic content
+          //inner curcle braces construct javascript object and there I'll have
+          // the exact same structure as here in the default context
+            value={{
+              authenticated: this.state.authenticated,
+              login: this.loginHandler
+            }}>
+            { this.state.showCockpit ? <Cockpit 
+              personsLength={this.state.persons.length}
+              showPersons={this.state.showPersons}
+              clicked={this.togglePersonHandler}
+              title={this.props.appTitle}
+            /> : null}
+            {/* <h1>HI I am React App</h1>
+            <p className={assignedClasses.join(' ')}>This is really working</p> */}
+            {/* <StyledButton
+              alt={this.state.showPersons}
+              onClick={this.togglePersonHandler}>
+                Toggle Persons
+            </StyledButton> */}
+            {/* <button className={btnClass} onClick={this.togglePersonHandler}>
               Toggle Persons
-          </StyledButton> */}
-          {/* <button className={btnClass} onClick={this.togglePersonHandler}>
-            Toggle Persons
-          </button> */}
-          {/*one other way of passing arguments
-          onClick={() => this.switchNameHandler('maximilian!!')}
-          */}
-          {persons}
+            </button> */}
+            {/*one other way of passing arguments
+            onClick={() => this.switchNameHandler('maximilian!!')}
+            */}
+            {persons}
+          </AuthContext.Provider>
         </Aux>
         // </WithClass>
       // </StyleRoot>

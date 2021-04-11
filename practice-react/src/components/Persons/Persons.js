@@ -68,6 +68,12 @@ class Persons extends PureComponent {
             age={person.age}
             click={() => this.props.clicked(index)}
             changed={(event) => this.props.changed(event, person.id)}
+            {/** Context was introduced by react and it helps us handle cases like this
+            where you need certain data, certain in multiple components and you don't
+            want to pass that state accross multiple layyers of components just
+            to get it from component A at the top to component D at the very bottom
+            the components B, C in between don't really care about it   */}
+            isAuth={this.props.isAuthenticated}
           />
     });
   }

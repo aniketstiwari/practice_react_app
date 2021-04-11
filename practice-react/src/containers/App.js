@@ -95,7 +95,8 @@ class App extends Component {
     otherstate: "some othet value",
     showPersons: false,
     showCockpit: true,
-    changeCounter: 0
+    changeCounter: 0,
+    authenticated: false
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -192,6 +193,10 @@ class App extends Component {
     this.setState({persons: persons})
   }
 
+  loginHandler = () => {
+    this.setState({authenticated: true})
+  }
+
   render() {
     // const style = {
     //   backgroundColor: 'green',
@@ -216,7 +221,8 @@ class App extends Component {
           <Persons 
             persons={this.state.persons}
             clicked={this.deletePersonHandler}
-            changed={this.nameChangeHandler}  
+            changed={this.nameChangeHandler}
+            isAuthenticated={this.state.authenticated}
           />
           {/* {this.state.persons.map((person, index) => {
             return <Person key={person.id}
@@ -263,6 +269,7 @@ class App extends Component {
             showPersons={this.state.showPersons}
             clicked={this.togglePersonHandler}
             title={this.props.appTitle}
+            login={this.loginHandler}
           /> : null}
           {/* <h1>HI I am React App</h1>
           <p className={assignedClasses.join(' ')}>This is really working</p> */}

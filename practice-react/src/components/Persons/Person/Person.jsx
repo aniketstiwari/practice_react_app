@@ -81,6 +81,7 @@ class Person extends Component {
     //Adding a component
     return (  
       <Aux>
+        {this.props.isAuth ? <p>Authenticated!</p> : <p>Please login</p>}
         <p onClick={this.props.click}> Hi I am {this.props.name} and I am {this.props.age} years old</p>
         <p>{this.props.children}</p>
         {/* To select an element we use refs in react The argument is the reference of the element you will placed it on Below we are setting up the focus in a variable */}

@@ -47,6 +47,20 @@ import PropTypes from 'prop-types';
 // }
 
 class Person extends Component {
+  constructor(props) {
+    super(props)
+    this.inputElementRef = React.createRef();
+  }
+
+  componentDidMount() {
+    //this reason we can call input element here because componentDidMount runs after
+    //the render function
+    //this.inputElement.focus();
+
+    //2nd way of creating ref
+    this.inputElementRef.current.focus();
+  }
+
   render() {
     console.log('Person.js rendering');
     // return (
@@ -69,7 +83,15 @@ class Person extends Component {
       <Aux>
         <p onClick={this.props.click}> Hi I am {this.props.name} and I am {this.props.age} years old</p>
         <p>{this.props.children}</p>
-        <input type="text" onChange={this.props.changed} value={this.props.name} />
+        {/* To select an element we use refs in react The argument is the reference of the element you will placed it on Below we are setting up the focus in a variable */}
+        <input
+          type="text"
+          // ref={(inputEl) => {this.inputElement = inputEl}}
+          //2nd way of creating ref
+          ref={this.inputElementRef}
+          onChange={this.props.changed}
+          value={this.props.name}
+        />
       </Aux>
     )
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './Person.module.css';
 import Aux from '../../../hoc/Aux';
 import WithClass  from '../../../hoc/WithClass';
+import PropTypes from 'prop-types';
 
 // import Radium from 'radium';
 //import styled from 'styled-components';
@@ -73,6 +74,15 @@ class Person extends Component {
     )
   }
 }
+
+//THis will work in both functional & class base component
+//Here you can validate your props
+Person.protoTypes = {
+  click: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  changed: PropTypes.func
+}; 
 
 //export default Radium(person);
 export default WithClass(Person, classes.Person);

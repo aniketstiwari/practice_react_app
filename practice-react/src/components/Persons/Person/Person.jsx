@@ -53,6 +53,13 @@ class Person extends Component {
     this.inputElementRef = React.createRef();
   }
 
+  //static property means it can be accessed from outside without the need to
+  //instantiate an object based on this class first
+  //Now this allows React to automatically connect this component here this class
+  //based component to your context behind the scenes and it gives you a new
+  //property in this component, this this context property
+  static contextType = AuthContext;
+
   componentDidMount() {
     //this reason we can call input element here because componentDidMount runs after
     //the render function
@@ -60,6 +67,7 @@ class Person extends Component {
 
     //2nd way of creating ref
     this.inputElementRef.current.focus();
+    console.log(this.context.authenticated)
   }
 
   render() {
@@ -82,13 +90,20 @@ class Person extends Component {
     //Adding a component
     return (  
       <Aux>
-        <AuthContext.Consumer>
+        {/**Disadvantage of the below context approach is you cannot
+         * use it outside the render function
+         */}
+        {/* <AuthContext.Consumer> */}
           {/** It will take function as a child. The function will be executed
            * for us by the authcontext.consumer or by the react context API, this 
            * function will get our context object
           */}
-          {(context) => context.authenticated ? <p>Authenticated!</p> : <p>Please login</p> }
-        </AuthContext.Consumer>
+          {/* {(context) => context.authenticated ? <p>Authenticated!</p> : <p>Please login</p> }
+        </AuthContext.Consumer> */}
+
+        {/**2nd approach for context */}
+        { this.context.authenticated ? <p>Authenticated!</p> : <p>Please login</p> }
+
         <p onClick={this.props.click}> Hi I am {this.props.name} and I am {this.props.age} years old</p>
         <p>{this.props.children}</p>
         {/* To select an element we use refs in react The argument is the reference of the element you will placed it on Below we are setting up the focus in a variable */}
